@@ -1,6 +1,13 @@
 site_name: tt的个人网站
 theme:
   name: material
+  features:
+    - navigation.indexes
 site_url: https://ttxian.github.io
 nav:
   - Home: 'index.md'
+  - Notes: 'noteIndex.md'
+  - Games101学习笔记:
+    - Lecture 1: 'Games101/Lecture - 1 Introduction.md'
+    - Lecture 2: 'Games101/Lecture - 2 Review of linear algebra.md'
+    
