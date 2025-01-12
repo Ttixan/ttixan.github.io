@@ -8,11 +8,11 @@ FILE TAGS
 ### Painter's Algorithm
 油画：从远到近画东西（Overwrite）
 新画的东西覆盖旧的东西。
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241009181925.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241009181925.png)
 缺陷：
 - 需要先按照深度进行排序（$O(n log n)$）
 - 但也有无法解决的情况（相互重叠）
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241009182155.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241009182155.png)
 
 ---
 画家算法：新画的东西{覆盖}旧的东西。
@@ -35,17 +35,17 @@ A: Z-buffer 算法
 	- Frame buffer
 	- depth buffer
 例子：越近越深，越浅越远
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241009182614.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241009182614.png)
 
 伪代码：
 - 任意一个三角形上采样的任意一个点
 - 如果比zbuffer里的最小值更小则进行zbuffer的更新
 - 并且更新framebuffer的rgb值（存储颜色
 - 否则的话什么也不做。
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241009182903.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241009182903.png)
 
 例子：
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241009183142.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241009183142.png)
 
 缺陷：
 - n个三角形的复杂度为$O(n)$
@@ -58,7 +58,7 @@ A:
 
 ### Shading 着色
 需要着色才能知道面的朝向，以及不同的颜色。
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241009210806.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241009210806.png)
 
 课程中关于shading的定义：
 > 将材质应用于一个物体的过程
@@ -68,7 +68,7 @@ A:
 - 高光：Specular highlights
 - 漫反射：Diffuse reflection
 - 环境光照：Ambient lighting
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241009211503.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241009211503.png)
 有了这些就可以模拟一个光照的感觉？
 
 ---
@@ -86,14 +86,14 @@ A:
 - 法线：n
 - 观测方向：v
 - 光照方向：l
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241009211626.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241009211626.png)
 ---
 Q: 着色模型的输入
 A: 
 
 #### shading != shadow
 着色不考虑其他物体：例如下面这个物体，如果有某个投影，不考虑。
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241009212113.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241009212113.png)
 
 ---
 Q: 着色模型不考虑其他物体的阴影，所以没有什么？
@@ -103,22 +103,22 @@ A: 没有影子。Shadow。
 
 #### Diffuse Reflection 漫反射
 漫反射光线从各个方向分散
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241009212321.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241009212321.png)
 漫反射会接收到多少光？由单位面积有多少光的能量决定：
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241009212848.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241009212848.png)
 - 由于倾斜，所以单位面积的光能量少了，所以显得更暗
 
 关于离光源远近而导致的强度不同（光的衰减）
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241009213521.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241009213521.png)
 - 总能量相同的情况下，面积越大，某点的能量越小。
 - 从而推算出某一点的亮度的公式：
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241009213633.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241009213633.png)
 - 吸收的能量：点乘。【漫反射光的强度近似地服从于Lambert定律，即漫反射光的光强仅与入射光的方向和反射点处表面法向夹角的余弦成正比。】
 - 有颜色的原因：吸收一部分能量，反射一部分能量（波长不同）【系数的来源】
 - 漫反射项和观察的方向无关。（公式中没有涉及到角度）
 
 例子：为什么有的地方黑9明暗交界线：因为法线垂直于光线。
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241009214118.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241009214118.png)
 
 ---
 漫反射能接收到多少光，由{单位面积}有多少光的能量决定。

@@ -12,25 +12,25 @@ basic radiometry
 - 与物体相交的格子判断哪些有物体：
 - 进行光线追踪，和格子相交判断。
 - 再求【光线】与这个【盒子内的物体】相交。
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241104215001.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241104215001.png)
 平衡：格子不能太稀疏，太密集
 - 与光线直接和物体求交换成光线和格子求交。
 - 启发式算法求得数量：
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241104215228.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241104215228.png)
 ### when will work well 效果好的时间？
 Teapot in a stadium：存在
 - 大规模密集
 - 大规模稀疏
 效果不好。
 
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241104215437.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241104215437.png)
 
 ## Spatial Partition
 基于上述的不足之处。
 key idea：稀疏的时候用大格子，密集的地方用小格子。
 ### Example：KD-Tree
 例子：
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241104215650.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241104215650.png)
 八叉树：
 - 例如停下来的条件：向下切有大部分块都没有东西
 - 例如右下角
@@ -45,7 +45,7 @@ KD-tree
 
 ### KD-tree Pre-processing 预处理
 
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241104220236.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241104220236.png)
 数据结构记录：
 - 内部节点：
 	- 切割的轴
@@ -54,11 +54,11 @@ KD-tree
 - 叶子节点：
 	- 实际切割的object
 
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241104220421.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241104220421.png)
 
 ### Traversing a KD-Tree：实际进行光线追踪
 
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241104220851.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241104220851.png)
 判断：
 - 如果有交点，则判断两个child
 	- child为leaf：计算物体相交
@@ -75,14 +75,14 @@ KD-tree问题：
 - 不需要计算bounding本身和三角形的相交
 问题：
 - 划分空间并不严格，会产生相交，只能尽可能让它变少
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241104221827.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241104221827.png)
 ### example
 步骤
 - 找到包围盒
 - 递归地进行划分
 - 重新计算包围盒
 - 直到停下来的条件
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241104221926.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241104221926.png)
 
 ### Building BVH
 如何划分？保持均匀？
@@ -104,14 +104,14 @@ solution：找到中位数？的三角形【有排序的问题】
 
 ### BVH traversal
 
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241104222756.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241104222756.png)
 - 如果不相交： return
 - 如果相交的是一个叶子：计算所有物体相交
 - 两个child都进行计算，返回更近的一个hit。
 
 ### comparison 对比
 
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241104223119.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241104223119.png)
 
 ## Basic radiometry 辐射度量学
 问题：
@@ -138,29 +138,29 @@ why 需要学习辐射度量学？
 ### Radiant Energy and Flux （power）
 energy定义：能量是电磁辐射的能量。使用焦耳作为单位。
 power：单位时间的性质：单位时间的能量（功率）（单位流明
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241106213007.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241106213007.png)
 
 ### important light measurement
 
 
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241106213240.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241106213240.png)
 
 #### radio intensity
 radio intensity：单位能量除以单位立体角。单位为坎德拉
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241106213425.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241106213425.png)
 #### 立体角
 从平面出发：弧长除以半径
 - 立体角就是球面上的面积除以半径平方
 - 定义了：空间中的角有多大
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241106213638.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241106213638.png)
 #### 单位立体角？微分立体角
 从两个角度：
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241106213852.png)
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241106213943.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241106213852.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241106213943.png)
 - 对于积分出来是$4\pi$
 
 均匀分布的光源：
 - 以单位角来积分的intensity最后得到的是功率
 - 所以功率除4pi为indensity
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241106214208.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241106214208.png)
 

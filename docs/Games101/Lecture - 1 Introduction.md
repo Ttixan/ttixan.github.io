@@ -31,5 +31,5 @@ Fundemental challenge
 实时：30fps，离线
 和CV的区别
 
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20240912112310.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240912112310.png)
 

@@ -13,7 +13,7 @@
 - 镜面反射
 - 低效的非直接反射
 可以得到近似的，快速的效果，但是质量不好。
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241031162113.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241031162113.png)
 
 solution：计算准确，但是很慢。
 应用：
@@ -30,9 +30,9 @@ solution：计算准确，但是很慢。
 1. 视线：对于每个像素，让它和摄像机和连线，延申出去
 2. 找到物体：如果和物体相交，取最近的一个点（解决深度的问题）
 3. 是否再阴影中：并且和光源作为连线（是否光源可见），那么就形成一条有效的光路。
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241031162952.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241031162952.png)
 
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241031163352.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241031163352.png)
 但是：光线只反射了一次，不符合常识。需要多次反射。
 Solution：
 ### Recursive（Whitted-style） ray tracing
@@ -45,27 +45,27 @@ Solution：
 每一个反射点都会和光源做一个连线，需要计算是否可见。
 - 最后做一个累加。
 - 还会考虑衰减的问题。
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241031164008.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241031164008.png)
 
 命名问题：
 - primary ray（第一个实现
 - secondary（反射）
 - shadow rays（连接光线的部分）
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241031164108.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241031164108.png)
 
 ## technique question
 ### Ray-surface intersection 交点
 定义：点光源射出的光线
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241101194140.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241101194140.png)
 
 #### with sphere与球的焦点
 定义了球上点：$p$
 求交点即为吧光线的部分带入其中求方程。
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241101194349.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241101194349.png)
 再使用球根公式即可得到。
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241101194614.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241101194614.png)
 求解结果的general的表达：一般性的隐式表面
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241101194737.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241101194737.png)
 
 判定内外还可以根据交点的个数。
 求三角形求交的步骤：
@@ -99,23 +99,23 @@ A: 带入，求根公式。
 分为两个步骤：
 - 如何求光线和平面求交？
 - 求交点是否在这个三角形内？【已经知道的内容】
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241102163652.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241102163652.png)
 
 平面的定义：
 - 定义一个法线
 - 平面必须过某个点，这些点满足某个条件。
 - 定义：p（某点）和p‘的向量和平面垂直。
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241102163850.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241102163850.png)
 
 最后带入之前的直线定义$r(t)=o+td$相交：
 - 求得t的表示：
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241102164035.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241102164035.png)
 
 是否有可以直接求得点的方法？【作业中提到直接带入】[[作业5相关]]
 - 使用重心坐标表示三角形某点
 - 使用线性方程组求解【线性方程组的climer法则？】
 - 最后得到三个参数都为非负（在三角形内的性质）
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241102164422.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241102164422.png)
 
 ---
 
@@ -143,13 +143,13 @@ A: 线性方程组的三个参数都大于0
 - 类似于模糊化边界之后进行剪枝计算？
 
 前置：把方体看作三个轴对称平面的交集。（AABB）
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241102165123.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241102165123.png)
 
 如何判定物体相交？从二维平面上考虑
 - 给定一个光线在什么时候会跟无限大的面有交点？
 - tmin和tmax进去和出去，x和y的平面
 - 求线段的交集（必须同时满足）
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241102170444.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241102170444.png)
 
 重要思想：
 - 只有三个都满足才进入
@@ -158,7 +158,7 @@ A: 线性方程组的三个参数都大于0
 - 三个平面计算最小时间和最大时间
 - 进入的时间为$t_{enter}=max\{t_{min}\}$，最后离开：$t_{exit}=min\{t_{max}\}$
 - 最后判断是否交点：进入时间小于离开时间
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241102170748.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241102170748.png)
 还有一些额外的判断【正负】：
 - 如果退出时间小于0：光线后面是box
 - 如果退出大于0，但是进入小于0：光线起点在盒子里
@@ -167,7 +167,7 @@ A: 线性方程组的三个参数都大于0
 
 Why？axis-aligned？
 垂直轴的计算更加简单：只需要某轴的分量
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241102171316.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241102171316.png)
 
 ---
 

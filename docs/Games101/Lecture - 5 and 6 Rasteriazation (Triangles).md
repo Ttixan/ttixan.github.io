@@ -16,16 +16,16 @@ Occlusions and Visibility
 【遮挡与可见性】
 
 ## Perspective projection
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241007211839.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241007211839.png)
 
 定义视锥的两个概念：
 1.  垂直可视角度（类似于广角？之类的镜头概念）
 2.  视角比例？
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241006193923.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241006193923.png)
 如何和之前的投影之间转化？
 - 利用tan
 - 利用aspect
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241006194324.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241006194324.png)
 
 ## Canonical Cube to Screen
 将方块投影到屏幕上
@@ -43,11 +43,11 @@ Rasterize 其实就是屏幕化？投影到屏幕上
 屏幕空间
 - 和z无关
 - 将【-1，1】转换到长宽之间
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241006195338.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241006195338.png)
 转换矩阵：
 - 先把长宽缩放（放大为width和height）
 - 再把中心平移到左下角
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241006195627.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241006195627.png)
 
 ## 不同的显示屏
 光栅显示和CRT（cathode ray tube）阴极扫描
@@ -95,9 +95,9 @@ Frame buffer-- 内存区域（显存）映射到屏幕上
 ## 简单方法-采样
 采样是一种离散化函数的方法
 给定三角形，判断像素中心是否再三角形内部。
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241006202126.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241006202126.png)
 显像伪代码
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241006202442.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241006202442.png)
 
 如何判断某点是否在三角形内？【叉积】
 
@@ -105,12 +105,12 @@ Frame buffer-- 内存区域（显存）映射到屏幕上
 - 不做处理【本课】
 - 特殊处理
 
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241006202611.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241006202611.png)
 算法优化-其实很小的一块区域才在三角形的覆盖范围
 - 没有在【min，max】的xy之内的都不计算【Bounding box：包围盒】
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241006202843.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241006202843.png)
 - 狭长的对角线三角形还可以从左右采样来减少计算量
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241006203033.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241006203033.png)
 
 ---
 Q: 包围盒（Bounding boxing）的优化的做法是取三角形的哪两个值？
@@ -128,11 +128,11 @@ A: 从左往右扫描。
 ## 真实的屏幕光栅化
 绿色感光元件更多（更敏感）
 bayer pattern
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241006203336.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241006203336.png)
 
 ### 锯齿！Jaggies
 采样率过低--信号走样问题
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241006203630.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241006203630.png)
 
 ## Lecture 6 - 目录
 antiliasing and Z-buffering
@@ -147,7 +147,7 @@ antiliasing and Z-buffering
 - 锯齿
 - 摩尔纹
 来源于奇数行和列的跳过
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241007105435.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241007105435.png)
 - 车轮效应：人眼的采样跟不上时间（看起来像车轮往后退
 本质：信号的变化太快，采样的速度跟不上。
 
@@ -165,12 +165,12 @@ A: 采样速度慢于信号变化速度
 
 ## Blurring（Pre-Filtering） before Sampling
 采样之前先做模糊。采样的是模糊的三角形
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241007105804.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241007105804.png)
 结果：
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241007105913.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241007105913.png)
 
 注意：不能先采样再模糊。
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241007110032.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241007110032.png)
 
 但是为什么？会产生这种走样？
 
@@ -189,7 +189,7 @@ A: 先模糊后采样
 
 ### 傅里叶展开
 使用sin和cos来表示一个函数
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241007110624.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241007110624.png)
 傅里叶级数展开--傅里叶变换
 
 ---
@@ -212,14 +212,14 @@ A: sin 和 cos
 ### 傅里叶变换
 时域--频域
 把函数分解为多个从低到高不同频率的函数（不同频率的段）
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241007110902.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241007110902.png)
 从图像来看：采样频率低跟不上函数的变化
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241007111139.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241007111139.png)
 
 因此，走样的定义：
 >两种频率的函数，给定一种采样方法，无法区分他们
 
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241007111348.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241007111348.png)
 
 ---
 走样在信号上的表现：两种频率的函数，给定一种{采样方法}，无法区分他们
@@ -230,16 +230,16 @@ A: sin 和 cos
 ## 滤波（Filtering）
 去掉某些频率
 例子：中心为低频，外层为高频。可以用亮度来表示多少。【因此为低频多，高频少】
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241007111724.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241007111724.png)
 ### 高通滤波
 【高通滤波】：过滤了低频的信号：
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241007112115.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241007112115.png)
 为什么高频率的是边界？（变化很剧烈？）
 ### 低通滤波
 只留下低频信息，去掉高频率
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241007112342.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241007112342.png)
 ### 去掉了高频和低频信息
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241007112453.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241007112453.png)
 
 ---
 Q: 高通滤波留下的是图像的什么？
@@ -261,12 +261,12 @@ A: 内容（除开边缘）
 2. 频域上乘积再傅里叶逆变换回来
 	1. 卷积核也可以傅里叶变换
 	2. 留下了低频（模糊）
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241007113016.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241007113016.png)
 #### box 滤波器
 box filtering：1/9是为了归一化，防止越来越亮。
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241007113357.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241007113357.png)
 box和频率的关系：越大的box越小的频率范围（越模糊--越小的频率留了下来）
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241007113555.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241007113555.png)
 
 ---
 时域的卷积等于频域上的{乘积}
@@ -285,11 +285,11 @@ box和频率的关系：越大的box越小的频率范围（越模糊--越小的
 ## 采样 Sampling
 采样的本质是：重复原始信号上的频谱。
 卷积：频域上的冲激函数相乘。
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241007114010.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241007114010.png)
 ### 走样 Aliasing
 采样慢-频谱密集-重叠的部分就造成了走样
 （采样慢-周期长-频率短）
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241007114637.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241007114637.png)
 
 ---
 走样的原因：采样慢-频谱密集-{重叠}的部分就造成了走样
@@ -303,32 +303,32 @@ box和频率的关系：越大的box越小的频率范围（越模糊--越小的
 
 
 ### 反走样 Antialiasing
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241007115257.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241007115257.png)
 
 两种方案：
 - 增加采样率（根本上解决，但是比较贵）
 - 反走样：
 	- 在进行重复之前使得傅里叶内容更加窄（更少的重叠）
 	- 比如说过滤掉高频的内容。
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241007115333.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241007115333.png)
 
 ### 实际中（In Practice）
 - 先进行卷积操作（模糊）
 - 在做采样
 例子-前后对比：按照覆盖的面积做一个平均
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241007115804.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241007115804.png)
 
 ### Antialiasing by Supersampling MSAA（Multisample Anti-Aliasing）
 更多采样点 把像素内部多加一些
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241007120238.png)
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241007120245.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241007120238.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241007120245.png)
 判断：小像素n/大像素N = 百分比（之前要求的模糊比例）
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241007120359.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241007120359.png)
 例如下面的2/4=0.5
 结果：深浅不同
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241007120501.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241007120501.png)
 变成box-采样
-![image.png](https://gitee.com/dontt/picgo-img-bed/raw/master/img/20241007120610.png)
+![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241007120610.png)
 
 ---
 Q: MSAA的关键在于M，M的意思是什么？
