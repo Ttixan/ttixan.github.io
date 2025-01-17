@@ -1,7 +1,3 @@
-TARGET DECK
-other::读书笔记::图形学
-FILE TAGS
-图形学 Lecture-8
 ## Lecture 8
 ### Specularly reflected light 高光
 高光的产生：是由于观察的方向和镜面反射方向接近：

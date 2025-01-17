@@ -1,7 +1,3 @@
-TARGET DECK
-other::读书笔记::图形学
-FILE TAGS
-图形学 Lecture-3
 ## Application
 - camera 变化
 - ik
@@ -9,50 +5,11 @@ FILE TAGS
 ![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240916144521.png)
  从三维世界到二维的逻辑
 
----
- 为什么学变换？学习从{三维}世界到{二维}的逻辑
-<!--ID: 1728302697546-->
-
 
 ## 2D Transformations
 
 ### Rotation, scale, shear
 思路，找前后对应关系。
-
----
-Q: 学习和推导变换的转化矩阵（Transform Matrix）需要关注什么？
-A: 前后状态的对应关系
-<!--ID: 1728302697483-->
-
-
-简单的二维转换矩阵介绍了哪四种变换？{缩放}，{反射}，{剪切}，{旋转}
-<!--ID: 1728302697551-->
-
-
-Q: 请默写缩放矩阵
-A: 1
-<!--ID: 1728302697489-->
-
-
-Q: 请默写反射矩阵
-A: 1
-<!--ID: 1728302697492-->
-
-
-Q: 请默写剪切矩阵
-A: 1
-<!--ID: 1728302697495-->
-
-
-Q: 请默写旋转矩阵
-A: 1
-#### Scale Transform
-![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240916144759.png)
-缩放矩阵（对角）
-#### Reflection Matrix
-![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240916145031.png)
-<!--ID: 1728302697498-->
-
 
 #### Shear Matrix
 ![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240916145907.png)
@@ -73,31 +30,11 @@ A: 1
 Motivation：不希望把平移变换独立出来，希望也用一种简单整合的方式表示。
 ![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240916151259.png)
 
----
-Q: 齐次坐标的引入是为了解决什么变换的问题？
-A: 平移
-<!--ID: 1728302697501-->
-
 
 ### Solution
 Solution，把维度拓展为3个，加法可以加入。
 ![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240916151518.png)
 向量具有平移不变性：所以vector后面是0。
-
----
-Q: 齐次坐标的2维点的表示，最后一位是什么？
-A: （x,y,1)
-<!--ID: 1728302697505-->
-
-
-Q: 齐次坐标的2维向量的表示，最后一位是什么？
-A: （x,y,0)
-<!--ID: 1728302697508-->
-
-
-Q: 为什么齐次坐标的二维向量最后一位是0？【性质】
-A: 因为向量具有平移不变性
-<!--ID: 1728302697511-->
 
 
 ### Properties
@@ -105,38 +42,22 @@ A: 因为向量具有平移不变性
 ![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240916152021.png)
 - 点+点=中点（齐次坐标系下）
 
----
-Q: 齐次坐标下，两个点相加的结果是什么几何意义？
-A: 点+点=中点（齐次坐标系下）
-<!--ID: 1728302697515-->
-
 
 ### Affine Transformation 仿射变换
 结构：
+
 ![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240916152245.png)
+
  - 左上角是原本的变换矩阵
  - 右边两个是移动
  - 最下面是001 （只有在仿射变换的时候是001）
 其他例子
 ![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240916152330.png)
 
----
-仿射变换相对应的概念是{线性变换}【齐次坐标和普通坐标】
-<!--ID: 1728302697555-->
-
-
-仿射变换的结构：左上角是原本的{变换矩阵}，右边是{平移}矩阵，最下面是{0，0，1}
-<!--ID: 1728302697559-->
-
 
 ### Inverse Transform 逆变换
 结果是乘逆矩阵
 ![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240916152544.png)
-
----
-Q: 从矩阵的角度来看，逆变换对应的是原本矩阵的什么？
-A: 逆矩阵
-<!--ID: 1728302697518-->
 
 
 ### Composite Transformation 变换的组合
@@ -146,20 +67,10 @@ Insight：矩阵乘法的顺序会影响结果 （因为不满足交换律）
 概念的推广：多个矩阵相乘
 ![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240916153104.png)
 
----
-Q: 在转换矩阵的语境下，复杂的变换可以转化为多个什么？
-A: 多个简单的变换。
-<!--ID: 1728302697521-->
-
-
-Q: 复杂变化转化为多个矩阵后，要注意矩阵之间的什么？
-A: 顺序。因为矩阵乘法不满足交换律
 
 ### Decomposing Complex Transform 变换的分解
 沿着某个点旋转的方法：移动回原点-旋转-移动回去
 ![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240916153641.png)
-<!--ID: 1728302697525-->
-
 
 ## 3D Transform
 结果是扩展了一个维度，保留之前2维的性质
@@ -173,26 +84,10 @@ A: 顺序。因为矩阵乘法不满足交换律
 ![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240916194432.png)
 为什么ｙ的角度不对？因为按照右手螺旋定则，应该是ＺｘＸ而不是ＸｘＺ得到Ｙ，所以是反向旋转。
 
----
-Q: 绕着轴旋转的齐次矩阵，哪个轴比较特殊？
-A: y轴
-<!--ID: 1728302697528-->
-
-
-Q: 为什么y轴的旋转矩阵特殊？
-A: 因为按照右手螺旋定则，应该是ＺｘＸ而不是ＸｘＺ得到Ｙ，所以是反向旋转。
-<!--ID: 1728302697531-->
-
 
 
 #### 分解复杂角度
 ![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240916195357.png)
-
----
-Q: 总的旋转（x，y，z轴组合）可以表示为什么角？
-A: 欧拉角（Euler angle）
-<!--ID: 1728302697534-->
-
 
 #### 绕某轴旋转的向量
 罗德里格斯
@@ -200,48 +95,32 @@ A: 欧拉角（Euler angle）
 在原点的旋转（默认）
 不再原点的轴的旋转：和上节课一样，先移到原点再旋转，之后再复位。
 
----
-Q: 向量绕着某轴旋转的公式是什么？
-A: 罗格里斯公式
-<!--ID: 1728302697537-->
-
-
 ## Viewing transformation（观测）
 ### 流程
 类比于正在拍照片
+
 - 寻找一个地方和人（model transformation）
 - 找到合适的摄像机角度（view transformation）
 - 照相（projection transformation）
-MVP
 
----
-
-视图变换（View）的三个组成的变换是什么？1 寻找一个地方和人{model transformation} 2 找到合适的摄像机角度{view transformation} 3 照相{projection transformation}
 #### 定义相机
 - 位置
 - 视角方向
 - 向上方向（类似于画幅旋转），相机绕着视角方向的轴旋转。
 一般来说我们希望相机始终位于原点，而且相机是正摆放的(Y轴正方向)，拍摄方向是朝着正前方拍的(Z轴负方向)
 ![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240916201245.png)
-<!--ID: 1728302697563-->
-
-
----
-定义一个相机的三个要素？{位置}【相机放哪里】，{视角方向}【朝着谁】，{向上方向}【横屏竖屏】
-<!--ID: 1728302697567-->
-
-
-相机的初始位置：正摆放的({Y轴}正方向)，朝着正前方拍的({Z轴}负方向)。
-<!--ID: 1728302697571-->
 
 
 #### 关键观察
 目的：完成初始化
+
 - 没有相对运动，拍出来的东西不变。
 - 先把相机移动到0，0，0。向着-z方向看。
 - 和相机一起移动物体
+
 #### 变换过程 how to
 ![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240918213144.png)
+
 - 平移矩阵【移到原点】
 - 过渡矩阵
 	- 过渡矩阵本身不好求，所以求逆
@@ -251,20 +130,11 @@ MVP
 		- 根据定义，逆矩阵意思是$AA^{-1}=I$，所以正交矩阵的逆矩阵 就是其转置。
 ![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240918213737.png)
 
----
-完成视图变换的三个步骤：1. 平移到{原点}。2. 各个轴旋转到各自的位置但是{逆}。3. 旋转矩阵的{正交}矩阵性质-求逆等于求{正交}
-<!--ID: 1728302697575-->
-
-
 ## Projection transformation（投影）
 - 将3d转化到2d上
 - 两种，正交和透视
 - 以是否有近大远小的区分。
 ![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240918215342.png)
-
----
-投影变换有两种变换，分别是{正交投影}和{透视投影}，以是否有{近大远小}来区分。
-<!--ID: 1728302697578-->
 
 
 #### Orthographic projection（正交）
@@ -277,15 +147,6 @@ MVP
 ![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240918215750.png)
 - 数学公式。
 ![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240918220035.png)
-
----
-正交投影的三个步骤：1. 平移到{原点}，2. 缩放到长宽高为{2}
-<!--ID: 1728302697581-->
-
-
-Q: 请写出转移矩阵
-A: 1
-<!--ID: 1728302697541-->
 
 
 #### Perspective projection（透视）
@@ -322,11 +183,9 @@ A: 1
 - 最后求解出A，B的值。
 ![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240919213040.png)
 
----
-透视投影的转换矩阵求解利用了三个性质：1. {相似三角形}，2. {等比缩放}点不变，3.  {远近点的z坐标不变}
-<!--ID: 1728302697585-->
 
 [深入理解透视矩阵 - zhyingkun](https://www.zhyingkun.com/perspective/perspective/#:~:text=%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E9%80%8F%E8%A7%86%E7%9F%A9%E9%98%B5%C2%B6.)
+
 得到了透视变正交矩阵和正交矩阵，最后相乘得到：
 ![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241007213126.png)
 
@@ -377,4 +236,5 @@ Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio, float z
 >大部分资料跟书上推导出来的透视投影矩阵一般是由fov,aspect,far,near四个参数数定义的，我们现在来看下我们前面求的透视投影矩阵转化成由上面四个参数定义的形式。
 
 推导过程：
+
 ![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241007213722.png)

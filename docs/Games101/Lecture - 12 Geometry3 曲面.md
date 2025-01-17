@@ -1,7 +1,3 @@
-TARGET DECK
-other::读书笔记::图形学
-FILE TAGS
-图形学 Lecture-12
 ## Surface
 ### 几何处理
 ![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241024211237.png)
