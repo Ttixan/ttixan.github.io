@@ -1,7 +1,3 @@
-TARGET DECK
-other::读书笔记::图形学
-FILE TAGS
-图形学 Lecture-11
 ## Content 目录
 - explicit representation
 - 曲线 curve

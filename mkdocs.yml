@@ -6,12 +6,12 @@ theme:
 site_url: https://ttxian.github.io
 nav:
   - Home: 'index.md'
-  - Notes: 'noteIndex.md'
   - Games101学习笔记:
     - Lecture 1: 'Games101/Lecture - 1 Introduction.md'
     - Lecture 2: 'Games101/Lecture - 2 Review of linear algebra.md'
-    - Lecture 3: 'Games101/Lecture - 3 Transformation.md'
-    - Lecture 5 and 6: 'Games101/Lecture - 5 and 6 Rasteriazation (Triangles).md'
+    - Lecture 3 & 4: 'Games101/Lecture - 3 Transformation.md'
+    - Lecture 5: 'Games101/Lecture - 5 Rasteriazation (Triangles).md'
+    - Lecture 6: 'Games101/Lecture - 6 Rasteriazation (Triangles).md'
     - Lecture 7: 'Games101/Lecture - 7 shading.md'
     - Lecture 8: 'Games101/Lecture - 8 shading 渲染管线.md'
     - Lecture 9: 'Games101/Lecture - 9 Texture Mapping 纹理映射.md'
@@ -26,10 +26,18 @@ nav:
     - Lecture 18: 'Games101/Lecture - 18 现有材质研究.md'
     - Lecture 19: 'Games101/Lecture - 19 相机、镜头和光场.md'
     - Lecture 20: 'Games101/Lecture - 20 Color and Perception 颜色与感知.md'
-    - 作业:
-      - 作业3相关: 'Games101/作业/作业3相关.md'
-      - 作业5相关: 'Games101/作业/作业5相关.md'
-      - 作业6相关: 'Games101/作业/作业6相关.md'
-      - 作业7相关: 'Games101/作业/作业7相关.md'
-      - 基础配置相关【卡顿】: 'Games101/作业/基础配置相关【卡顿】.md'
-    
+  - Games101作业笔记:
+    - 基础配置: 'Games101Homework/基础配置相关【卡顿】.md'
+    - Homework3: 'Games101Homework/作业3相关.md'
+    - Homework5: 'Games101Homework/作业5相关.md'
+    - Homework6: 'Games101Homework/作业6相关.md'
+    - Homework7: 'Games101Homework/作业7相关.md'
+
+
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js

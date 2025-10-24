@@ -1,8 +1,3 @@
-TARGET DECK
-other::读书笔记::图形学
-FILE TAGS
-图形学 Lecture-7
-
 ## Lecture 7 Visibility and occlusion
 本课学习遮挡关系和 可见性
 ### Painter's Algorithm

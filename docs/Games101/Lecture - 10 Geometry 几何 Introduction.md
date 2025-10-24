@@ -1,8 +1,3 @@
-TARGET DECK
-other::读书笔记::图形学
-FILE TAGS
-图形学 Lecture-10
-
 ## 纹理应用
 纹理可以用来表示环境光。
 现代GPU中，纹理(texture)=内存(memory)+范围查询(range query)
