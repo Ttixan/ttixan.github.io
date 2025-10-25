@@ -239,5 +239,3 @@ solution：EWA 过滤
 多次查询。
 
 ![image.png](https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241017161330.png)
-
-## Application of Texture mapping
