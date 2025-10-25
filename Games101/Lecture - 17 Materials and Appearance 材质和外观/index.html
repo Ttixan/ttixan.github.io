@@ -1,0 +1,1487 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ttxian.github.io/Games101/Lecture%20-%2017%20Materials%20and%20Appearance%20%E6%9D%90%E8%B4%A8%E5%92%8C%E5%A4%96%E8%A7%82/">
+      
+      
+        <link rel="prev" href="../Lecture%20-%2016%20Ray%20tracing%20%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E7%A7%AF%E5%88%86/">
+      
+      
+        <link rel="next" href="../Lecture%20-%2018%20%E7%8E%B0%E6%9C%89%E6%9D%90%E8%B4%A8%E7%A0%94%E7%A9%B6/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Lecture 17 - tt的个人网站</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#appearance-of-natural-materials" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="tt的个人网站" class="md-header__button md-logo" aria-label="tt的个人网站" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            tt的个人网站
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lecture 17
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="tt的个人网站" class="md-nav__button md-logo" aria-label="tt的个人网站" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    tt的个人网站
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Games101学习笔记
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Games101学习笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%201%20Introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%202%20Review%20of%20linear%20algebra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%203%20Transformation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 3 & 4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%205%20and%206%20Rasteriazation%20%28Triangles%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 5 & 6
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%207%20shading/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 7
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%208%20shading%20%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 8
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%209%20Texture%20Mapping%20%E7%BA%B9%E7%90%86%E6%98%A0%E5%B0%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 9
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2010%20Geometry%20%E5%87%A0%E4%BD%95%20Introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 10
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2011%20Geometry%20%E6%9B%B2%E7%BA%BF%E5%92%8C%E5%B9%B3%E9%9D%A2%20Curves%20and%20Surface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 11
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2012%20Geometry3%20%E6%9B%B2%E9%9D%A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 12
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2013%20Ray%20tracing%20%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA%20%E6%8A%80%E6%9C%AF%E9%9A%BE%E9%A2%98/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 13
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2014%20Ray%20tracing%20%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA%20%E5%8A%A0%E9%80%9F%E7%BB%93%E6%9E%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 14
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2015%20Ray%20tracing%20%E8%BE%90%E5%B0%84%E5%BA%A6%E9%87%8F%E5%AD%A6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 15
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2016%20Ray%20tracing%20%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E7%A7%AF%E5%88%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 16
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Lecture 17
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 17
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#appearance-of-natural-materials" class="md-nav__link">
+    <span class="md-ellipsis">
+      Appearance of Natural Materials
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Appearance of Natural Materials">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-material-in-computer-graphics" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Material in Computer Graphics
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What is Material in Computer Graphics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diffuse-lambertian-material" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diffuse / Lambertian Material
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#glossy-material-brdf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Glossy material BRDF
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ideal-reflective-material" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ideal reflective material
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#perfect-specular-reflection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Perfect specular reflection
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specular-refraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Specular Refraction 折射
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Specular Refraction 折射">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#snells-law-" class="md-nav__link">
+    <span class="md-ellipsis">
+      Snell's Law 折射规律-斯内尔定律
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fresnel-reflection-term" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fresnel reflection / Term 菲涅尔项
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#microfacet-material" class="md-nav__link">
+    <span class="md-ellipsis">
+      Microfacet Material 微表面模型
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Microfacet Material 微表面模型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#microfacet-brdf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Microfacet BRDF
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#isotropic-anisotropic-materialsbrdfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Isotropic / Anisotropic Materials（BRDFs）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Isotropic / Anisotropic Materials（BRDFs）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#anisotropic-brdfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Anisotropic BRDFs 各向异性材质
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#brdf" class="md-nav__link">
+    <span class="md-ellipsis">
+      BRDF的性质
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#meansuring-brdf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Meansuring BRDF 测量
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2018%20%E7%8E%B0%E6%9C%89%E6%9D%90%E8%B4%A8%E7%A0%94%E7%A9%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 18
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2019%20%E7%9B%B8%E6%9C%BA%E3%80%81%E9%95%9C%E5%A4%B4%E5%92%8C%E5%85%89%E5%9C%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 19
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2020%20Color%20and%20Perception%20%E9%A2%9C%E8%89%B2%E4%B8%8E%E6%84%9F%E7%9F%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 20
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Games101作业笔记
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Games101作业笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BD%9C%E4%B8%9A/%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3%E3%80%90%E5%8D%A1%E9%A1%BF%E3%80%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    基础配置
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BD%9C%E4%B8%9A/%E4%BD%9C%E4%B8%9A3%E7%9B%B8%E5%85%B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Homework3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BD%9C%E4%B8%9A/%E4%BD%9C%E4%B8%9A5%E7%9B%B8%E5%85%B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Homework5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BD%9C%E4%B8%9A/%E4%BD%9C%E4%B8%9A6%E7%9B%B8%E5%85%B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Homework6
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BD%9C%E4%B8%9A/%E4%BD%9C%E4%B8%9A7%E7%9B%B8%E5%85%B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Homework7
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#appearance-of-natural-materials" class="md-nav__link">
+    <span class="md-ellipsis">
+      Appearance of Natural Materials
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Appearance of Natural Materials">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-material-in-computer-graphics" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Material in Computer Graphics
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What is Material in Computer Graphics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diffuse-lambertian-material" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diffuse / Lambertian Material
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#glossy-material-brdf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Glossy material BRDF
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ideal-reflective-material" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ideal reflective material
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#perfect-specular-reflection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Perfect specular reflection
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specular-refraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Specular Refraction 折射
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Specular Refraction 折射">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#snells-law-" class="md-nav__link">
+    <span class="md-ellipsis">
+      Snell's Law 折射规律-斯内尔定律
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fresnel-reflection-term" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fresnel reflection / Term 菲涅尔项
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#microfacet-material" class="md-nav__link">
+    <span class="md-ellipsis">
+      Microfacet Material 微表面模型
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Microfacet Material 微表面模型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#microfacet-brdf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Microfacet BRDF
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#isotropic-anisotropic-materialsbrdfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Isotropic / Anisotropic Materials（BRDFs）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Isotropic / Anisotropic Materials（BRDFs）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#anisotropic-brdfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Anisotropic BRDFs 各向异性材质
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#brdf" class="md-nav__link">
+    <span class="md-ellipsis">
+      BRDF的性质
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#meansuring-brdf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Meansuring BRDF 测量
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Lecture 17</h1>
+
+<h2 id="appearance-of-natural-materials">Appearance of Natural Materials</h2>
+<p>外观是材质和光线共同作用的结果</p>
+<h3 id="what-is-material-in-computer-graphics">What is Material in Computer Graphics</h3>
+<p>镜面反射，漫反射，渲染方程里：BRDF决定了不同的材质</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241117202604.png" /></p>
+<h4 id="diffuse-lambertian-material">Diffuse / Lambertian Material</h4>
+<p>进入的光是uniform，反射的光是uniform
+利用能量守恒，Irradiance不会因为反射而改变。
+积分之后（在brdf和入射为常数的时候），得到反射系数：<span class="arithmatex">\(f_r\)</span></p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241117203023.png" /></p>
+<h4 id="glossy-material-brdf">Glossy material BRDF</h4>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241117203131.png" /></p>
+<h4 id="ideal-reflective-material">Ideal reflective material</h4>
+<p>一部分反射，一部分折射。右边的部分：有吸收，才会出现颜色。</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241117203225.png" /></p>
+<h4 id="perfect-specular-reflection">Perfect specular reflection</h4>
+<p>法线方向是初设+入射。
+给定初设还可以反过来算入射。
+还有不同的方法计算角度（计算<span class="arithmatex">\(\phi\)</span> 和<span class="arithmatex">\(\theta\)</span> ）</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241117203414.png" /></p>
+<h3 id="specular-refraction">Specular Refraction 折射</h3>
+<p>不同波长不同的折射率。
+Costics：光线在海水表面。海底有几率即受到各个方向的光，在某些地方会形成光的条</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241117204011.png" /></p>
+<p>如何计算折射方向？</p>
+<h4 id="snells-law-">Snell's Law 折射规律-斯内尔定律</h4>
+<p>不同的材质有不同的折射率。
+折射率x入射角等于</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241117204125.png" /></p>
+<p>如果：计算不出有意义的实数，那么折射就不可能发生。
+根号内部小于0（计算cos的意义）</p>
+<ul>
+<li>
+<p>只能是<span class="arithmatex">\(\eta_i\)</span>大于 <span class="arithmatex">\(\eta_t\)</span></p>
+</li>
+<li>
+<p>入射介质大于折射介质的折射率，则为不会发生折射（全反射现象）</p>
+</li>
+</ul>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241117204425.png" /></p>
+<p>那么人在水底只能看到一个锥的部分。
+折射只能看到小的区域。</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241117204518.png" /></p>
+<p>所以BRDF+BTDF = BSDF（反射+折射的统称）</p>
+<h4 id="fresnel-reflection-term">Fresnel reflection / Term 菲涅尔项</h4>
+<p>有多少光能被反射可以是由入射光决定的（角度）</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241117205615.png" /></p>
+<p>绝缘体的菲涅尔项告诉我们：
+方向平行则基本上反射掉，如果基本垂直则为折射。【SP是极化问题，暂时不考虑】</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241117205702.png" /></p>
+<p>生活中：汽车前排窗子看起来是反射，靠近的窗子是折射（透明）
+导体的菲涅尔项：基本上是反射</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241117205849.png" /></p>
+<p>如何知道计算公式（近似）【Schlick's approxiamation】</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241117210128.png" /></p>
+<p>其中：认为曲线从0开始，到90度的时候为1
+并且基准反射率和折射率有关</p>
+<h3 id="microfacet-material">Microfacet Material 微表面模型</h3>
+<p>只要离得足够远，看不到表面微小的改变，只能看到一个整体的作用。【现象】
+假设：</p>
+<ul>
+<li>
+<p>Macroscale：平面并且粗糙【看到的是外观】</p>
+</li>
+<li>
+<p>Microscale：起伏并且镜面反射【看到的是几何】</p>
+</li>
+</ul>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241117210619.png" /></p>
+<h4 id="microfacet-brdf">Microfacet BRDF</h4>
+<p>了解法线的分布：基本上集中在宏观的向上
+如果表面粗糙：各个方向，分布比较远（方差大）
+因此微表面模型可以利用法线分布来描述反射的情况。</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241117210835.png" /></p>
+<p>公式：</p>
+<ul>
+<li>
+<p>菲涅尔项</p>
+</li>
+<li>
+<p>法线分布（用半程向量表示，反映多少光可以反射）</p>
+</li>
+<li>
+<p>几何项（由于shadowing masking导致的投影，遮挡，看不到的微表面，失去了作用）</p>
+<ul>
+<li>几乎和面平行的入射方向，Grazing angle就会发生这种现象（自遮挡）用于修正这部分特殊情况</li>
+</ul>
+</li>
+</ul>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241117211248.png" /></p>
+<h2 id="isotropic-anisotropic-materialsbrdfs">Isotropic / Anisotropic Materials（BRDFs）</h2>
+<p>区分材质的方式
+观察这个电梯的例子：由于电梯的表面的金属似乎被按照某个方向磨过，所以高光变成了条状（和平常的不一样）</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241117211655.png" /></p>
+<p>被叫做：各向异性/各项同性材质。
+可以从微表面的看出：</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241117211824.png" /></p>
+<p>需要重新定义BRDF：</p>
+<h4 id="anisotropic-brdfs">Anisotropic BRDFs 各向异性材质</h4>
+<p>如果不满足旋转一定的角度之后，看到的BRDF不一样，则说明是各项异性。【绝对角有关，而不是相对角】</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241117211931.png" /></p>
+<h2 id="brdf">BRDF的性质</h2>
+<ul>
+<li>
+<p>非负性</p>
+</li>
+<li>
+<p>线性性质：可以直接线性相加</p>
+</li>
+</ul>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241117212335.png" /></p>
+<ul>
+<li>
+<p>可逆性：交换入射和出射的角色，得到的结果依然是一样的。</p>
+</li>
+<li>
+<p>能量守恒定律：不可能让能量变多（但却是可能有部分被吸收）</p>
+</li>
+<li>
+<p>各向异性vs同性：之和相对角有关，原本的四维可以转化为三维的</p>
+<ul>
+<li>还可以不考虑正负，只考虑绝对值。</li>
+</ul>
+</li>
+</ul>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241117212658.png" /></p>
+<h2 id="meansuring-brdf">Meansuring BRDF 测量</h2>
+<p>实际测量和数据推演不一样。是否可以直接用测量结果作为渲染的数据？
+枚举所有的初设和入射方向，测的出来所有的radiance
+【有很多加速的方法】
+测出来之后，进行存储。
+MERL BRDF database</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241117213149.png" /></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.indexes"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

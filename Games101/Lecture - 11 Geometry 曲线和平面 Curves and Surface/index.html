@@ -1,0 +1,1561 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ttxian.github.io/Games101/Lecture%20-%2011%20Geometry%20%E6%9B%B2%E7%BA%BF%E5%92%8C%E5%B9%B3%E9%9D%A2%20Curves%20and%20Surface/">
+      
+      
+        <link rel="prev" href="../Lecture%20-%2010%20Geometry%20%E5%87%A0%E4%BD%95%20Introduction/">
+      
+      
+        <link rel="next" href="../Lecture%20-%2012%20Geometry3%20%E6%9B%B2%E9%9D%A2/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Lecture 11 - tt的个人网站</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#content" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="tt的个人网站" class="md-header__button md-logo" aria-label="tt的个人网站" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            tt的个人网站
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lecture 11
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="tt的个人网站" class="md-nav__button md-logo" aria-label="tt的个人网站" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    tt的个人网站
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Games101学习笔记
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Games101学习笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%201%20Introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%202%20Review%20of%20linear%20algebra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%203%20Transformation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 3 & 4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%205%20and%206%20Rasteriazation%20%28Triangles%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 5 & 6
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%207%20shading/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 7
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%208%20shading%20%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 8
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%209%20Texture%20Mapping%20%E7%BA%B9%E7%90%86%E6%98%A0%E5%B0%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 9
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2010%20Geometry%20%E5%87%A0%E4%BD%95%20Introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 10
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Lecture 11
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 11
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#content" class="md-nav__link">
+    <span class="md-ellipsis">
+      Content 目录
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explicit-representation-of-geometry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explicit representation of Geometry 显式几何表示
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Explicit representation of Geometry 显式几何表示">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#point-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      Point Cloud 点云
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#polygon-mesh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Polygon Mesh 多边形面
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#curve" class="md-nav__link">
+    <span class="md-ellipsis">
+      Curve 曲线
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Curve 曲线">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      贝塞尔曲线
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="贝塞尔曲线">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#de-casteljau" class="md-nav__link">
+    <span class="md-ellipsis">
+      de casteljau 算法
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluation-bezier-curves" class="md-nav__link">
+    <span class="md-ellipsis">
+      代数解释 Evaluation Bezier Curves
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      贝塞尔曲线性质
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#piece-wise" class="md-nav__link">
+    <span class="md-ellipsis">
+      逐段的贝塞尔曲线 Piece-wise
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="逐段的贝塞尔曲线 Piece-wise">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#continuity" class="md-nav__link">
+    <span class="md-ellipsis">
+      连续性 continuity
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-types-of-splines" class="md-nav__link">
+    <span class="md-ellipsis">
+      其他曲线 Other types of splines
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#surfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      曲面 Surfaces
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="曲面 Surfaces">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      evaluation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      几何处理
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2012%20Geometry3%20%E6%9B%B2%E9%9D%A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 12
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2013%20Ray%20tracing%20%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA%20%E6%8A%80%E6%9C%AF%E9%9A%BE%E9%A2%98/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 13
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2014%20Ray%20tracing%20%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA%20%E5%8A%A0%E9%80%9F%E7%BB%93%E6%9E%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 14
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2015%20Ray%20tracing%20%E8%BE%90%E5%B0%84%E5%BA%A6%E9%87%8F%E5%AD%A6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 15
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2016%20Ray%20tracing%20%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E7%A7%AF%E5%88%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 16
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2017%20Materials%20and%20Appearance%20%E6%9D%90%E8%B4%A8%E5%92%8C%E5%A4%96%E8%A7%82/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 17
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2018%20%E7%8E%B0%E6%9C%89%E6%9D%90%E8%B4%A8%E7%A0%94%E7%A9%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 18
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2019%20%E7%9B%B8%E6%9C%BA%E3%80%81%E9%95%9C%E5%A4%B4%E5%92%8C%E5%85%89%E5%9C%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 19
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2020%20Color%20and%20Perception%20%E9%A2%9C%E8%89%B2%E4%B8%8E%E6%84%9F%E7%9F%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 20
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Games101作业笔记
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Games101作业笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BD%9C%E4%B8%9A/%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3%E3%80%90%E5%8D%A1%E9%A1%BF%E3%80%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    基础配置
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BD%9C%E4%B8%9A/%E4%BD%9C%E4%B8%9A3%E7%9B%B8%E5%85%B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Homework3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BD%9C%E4%B8%9A/%E4%BD%9C%E4%B8%9A5%E7%9B%B8%E5%85%B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Homework5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BD%9C%E4%B8%9A/%E4%BD%9C%E4%B8%9A6%E7%9B%B8%E5%85%B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Homework6
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BD%9C%E4%B8%9A/%E4%BD%9C%E4%B8%9A7%E7%9B%B8%E5%85%B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Homework7
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#content" class="md-nav__link">
+    <span class="md-ellipsis">
+      Content 目录
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explicit-representation-of-geometry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explicit representation of Geometry 显式几何表示
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Explicit representation of Geometry 显式几何表示">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#point-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      Point Cloud 点云
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#polygon-mesh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Polygon Mesh 多边形面
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#curve" class="md-nav__link">
+    <span class="md-ellipsis">
+      Curve 曲线
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Curve 曲线">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      贝塞尔曲线
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="贝塞尔曲线">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#de-casteljau" class="md-nav__link">
+    <span class="md-ellipsis">
+      de casteljau 算法
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluation-bezier-curves" class="md-nav__link">
+    <span class="md-ellipsis">
+      代数解释 Evaluation Bezier Curves
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      贝塞尔曲线性质
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#piece-wise" class="md-nav__link">
+    <span class="md-ellipsis">
+      逐段的贝塞尔曲线 Piece-wise
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="逐段的贝塞尔曲线 Piece-wise">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#continuity" class="md-nav__link">
+    <span class="md-ellipsis">
+      连续性 continuity
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-types-of-splines" class="md-nav__link">
+    <span class="md-ellipsis">
+      其他曲线 Other types of splines
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#surfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      曲面 Surfaces
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="曲面 Surfaces">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      evaluation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      几何处理
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Lecture 11</h1>
+
+<h2 id="content">Content 目录</h2>
+<ul>
+<li>
+<p>explicit representation</p>
+</li>
+<li>
+<p>曲线 curve</p>
+<ul>
+<li>
+<p>Bezier curves</p>
+</li>
+<li>
+<p>De casteljau's algorithm</p>
+</li>
+<li>
+<p>B-splines, etc.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>表面 Surface</p>
+<ul>
+<li>
+<p>Bezier surface</p>
+</li>
+<li>
+<p>Triangle &amp; quads</p>
+<ul>
+<li>Subdivision, simplification, regularization</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="explicit-representation-of-geometry">Explicit representation of Geometry 显式几何表示</h2>
+<h3 id="point-cloud">Point Cloud 点云</h3>
+<p>不考虑面，只考虑点。密集的点表述地更好</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241024194423.png" /></p>
+<p>还有的研究方向：给定点，变成三角形面。</p>
+<h3 id="polygon-mesh">Polygon Mesh 多边形面</h3>
+<p>用三角形，四边形来描述复杂的物体</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241024194559.png" /></p>
+<p>保存方式：.obj文件</p>
+<ul>
+<li>
+<p>顶点</p>
+</li>
+<li>
+<p>法线</p>
+</li>
+<li>
+<p>纹理坐标</p>
+</li>
+<li>
+<p>连接关系（哪几个点会形成三角形）（指定纹理，顶点，法线）</p>
+</li>
+</ul>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241024194834.png" /></p>
+<h2 id="curve">Curve 曲线</h2>
+<h3 id="_1">贝塞尔曲线</h3>
+<p>用一系列控制点来定义某个曲线，表明了曲线满足的某种性质。</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241024195605.png" /></p>
+<ul>
+<li>
+<p>经过起始点和终止点</p>
+</li>
+<li>
+<p>设定了切线的方向</p>
+</li>
+</ul>
+<h4 id="de-casteljau">de casteljau 算法</h4>
+<p>问题：给定三个点，如何求出其曲线？
+算法：</p>
+<ul>
+<li>
+<p>任意的时间t（0，1）之间，给出其在某个线段上的位置</p>
+</li>
+<li>
+<p>再把新的线段连起来，又找时间t的位置。</p>
+</li>
+<li>
+<p>穷举（任意一个时间t）直到只剩一个点【递归】</p>
+</li>
+</ul>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241024200219.png" /></p>
+<p>例子2：4个点的例子</p>
+<ul>
+<li>
+<p>四个点：找到某点，两个点</p>
+</li>
+<li>
+<p>两个点：找到重点：一个线段</p>
+</li>
+<li>
+<p>一个线段，中间点，找到曲线。【三个点确定的曲线】</p>
+</li>
+</ul>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241024200626.png" /></p>
+<h3 id="evaluation-bezier-curves">代数解释 Evaluation Bezier Curves</h3>
+<p>把每个阶的分割点依然用t的多项式带入原本的式子，可以得到其实曲线是由控制点和多项式组成的表示：</p>
+<ul>
+<li>
+<p>n表示控制点的个数，j表示第几个控制点</p>
+</li>
+<li>
+<p>t表示时间，<span class="arithmatex">\(B_j^n(t)\)</span> 表示伯恩斯坦多项式</p>
+</li>
+<li>
+<p>描述的是二项分布。二项式系数位<span class="arithmatex">\(\binom{n}{k} = \frac{n!}{k!(n-k)!}\)</span>
+并且这样的性质可以运用到三维空间中。</p>
+</li>
+</ul>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241024202041.png" /></p>
+<p>三维空间</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241024203038.png" /></p>
+<h3 id="_2">贝塞尔曲线性质</h3>
+<ul>
+<li>
+<p>t=0 t=1为起点和终点。</p>
+</li>
+<li>
+<p>切线的朝向（和起点，终点有关），常数和给点个数有关</p>
+</li>
+<li>
+<p>对不同的顶点做变换，做了仿射变化后，得出的曲线是一样的。（</p>
+<ul>
+<li>
+<p>不需要记录每个点，可以不用管变换先后顺序）</p>
+</li>
+<li>
+<p>但是注意只对仿射变换有用</p>
+</li>
+</ul>
+</li>
+<li>
+<p>凸包性质：画出来的曲线一定在连接的点之内（类似于素描中的切圆）【不能超过凸包的范围】</p>
+</li>
+</ul>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241024203915.png" /></p>
+<h3 id="piece-wise">逐段的贝塞尔曲线 Piece-wise</h3>
+<p>有时候多段的效果并不好，会变成一个平滑的曲线</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241024205254.png" /></p>
+<p>不如逐段定义之后连接起来。</p>
+<ul>
+<li>
+<p>每次用4个控制点，之后连接起来</p>
+</li>
+<li>
+<p>把控制点当作控制杆一样（钢笔工具）</p>
+</li>
+</ul>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241024205324.png" /></p>
+<h4 id="continuity">连续性 continuity</h4>
+<ul>
+<li>C0连续：终止点和起始点一样，</li>
+</ul>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241024210023.png" /></p>
+<ul>
+<li>C1连续：切线距离一样。共线，方向相反，距离一样。</li>
+</ul>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241024210036.png" /></p>
+<ul>
+<li>曲率连续（更高的连续性）</li>
+</ul>
+<h3 id="other-types-of-splines">其他曲线 Other types of splines</h3>
+<p>样条：
+用样条固定住，保证一定会过某点。</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241024210335.png" /></p>
+<p>B-样条（基函数）</p>
+<ul>
+<li>
+<p>short for basis spline
+性质更好：</p>
+</li>
+<li>
+<p>需求：只改动某个点，不会改变整个曲线的范围【局部性】</p>
+</li>
+</ul>
+<h2 id="surfaces">曲面 Surfaces</h2>
+<p>贝塞尔曲面，把各种曲面拼接起来。</p>
+<ul>
+<li>
+<p>水平、，当作控制点</p>
+</li>
+<li>
+<p>竖直，根据控制点继续生成面</p>
+</li>
+</ul>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241024210942.png" /></p>
+<h3 id="evaluation">evaluation</h3>
+<p>水平方向
+竖直方向
+UV，用某一个U，找到四个点，再给出时间V，则为UV下的位置。</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241024211125.png" /></p>
+<h3 id="_3">几何处理</h3>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241024211237.png" /></p>
+<ul>
+<li>
+<p>Subdivision：更多三角形</p>
+</li>
+<li>
+<p>Simplification：更少三角形</p>
+</li>
+<li>
+<p>Regularization：统一大小的三角形</p>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.indexes"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

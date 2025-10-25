@@ -1,0 +1,1755 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ttxian.github.io/Games101/Lecture%20-%2014%20Ray%20tracing%20%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA%20%E5%8A%A0%E9%80%9F%E7%BB%93%E6%9E%84/">
+      
+      
+        <link rel="prev" href="../Lecture%20-%2013%20Ray%20tracing%20%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA%20%E6%8A%80%E6%9C%AF%E9%9A%BE%E9%A2%98/">
+      
+      
+        <link rel="next" href="../Lecture%20-%2015%20Ray%20tracing%20%E8%BE%90%E5%B0%84%E5%BA%A6%E9%87%8F%E5%AD%A6/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Lecture 14 - tt的个人网站</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#content" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="tt的个人网站" class="md-header__button md-logo" aria-label="tt的个人网站" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            tt的个人网站
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lecture 14
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="tt的个人网站" class="md-nav__button md-logo" aria-label="tt的个人网站" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    tt的个人网站
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Games101学习笔记
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Games101学习笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%201%20Introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%202%20Review%20of%20linear%20algebra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%203%20Transformation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 3 & 4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%205%20and%206%20Rasteriazation%20%28Triangles%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 5 & 6
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%207%20shading/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 7
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%208%20shading%20%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 8
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%209%20Texture%20Mapping%20%E7%BA%B9%E7%90%86%E6%98%A0%E5%B0%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 9
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2010%20Geometry%20%E5%87%A0%E4%BD%95%20Introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 10
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2011%20Geometry%20%E6%9B%B2%E7%BA%BF%E5%92%8C%E5%B9%B3%E9%9D%A2%20Curves%20and%20Surface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 11
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2012%20Geometry3%20%E6%9B%B2%E9%9D%A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 12
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2013%20Ray%20tracing%20%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA%20%E6%8A%80%E6%9C%AF%E9%9A%BE%E9%A2%98/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 13
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Lecture 14
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 14
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#content" class="md-nav__link">
+    <span class="md-ellipsis">
+      content
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uniform-grids" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uniform grids
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Uniform grids">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-will-work-well" class="md-nav__link">
+    <span class="md-ellipsis">
+      when will work well 效果好的时间？
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spatial-partition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spatial Partition
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spatial Partition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examplekd-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example：KD-Tree
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kd-tree-pre-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      KD-tree Pre-processing 预处理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#traversing-a-kd-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Traversing a KD-Tree：实际进行光线追踪
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#object-partition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Object Partition：物体划分
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Object Partition：物体划分">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bvh-boudning-volume-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      BVH : boudning volume hierarchy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-bvh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building BVH
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bvh-traversal" class="md-nav__link">
+    <span class="md-ellipsis">
+      BVH traversal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      comparison 对比
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-radiometry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic radiometry 辐射度量学
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic radiometry 辐射度量学">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#radiometry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Radiometry 辐射度量学
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#radiant-energy-and-flux-power" class="md-nav__link">
+    <span class="md-ellipsis">
+      Radiant Energy and Flux （power）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#important-light-measurement" class="md-nav__link">
+    <span class="md-ellipsis">
+      important light measurement
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="important light measurement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#radio-intensity" class="md-nav__link">
+    <span class="md-ellipsis">
+      radio intensity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      立体角
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      单位立体角？微分立体角
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2015%20Ray%20tracing%20%E8%BE%90%E5%B0%84%E5%BA%A6%E9%87%8F%E5%AD%A6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 15
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2016%20Ray%20tracing%20%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E7%A7%AF%E5%88%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 16
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2017%20Materials%20and%20Appearance%20%E6%9D%90%E8%B4%A8%E5%92%8C%E5%A4%96%E8%A7%82/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 17
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2018%20%E7%8E%B0%E6%9C%89%E6%9D%90%E8%B4%A8%E7%A0%94%E7%A9%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 18
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2019%20%E7%9B%B8%E6%9C%BA%E3%80%81%E9%95%9C%E5%A4%B4%E5%92%8C%E5%85%89%E5%9C%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 19
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2020%20Color%20and%20Perception%20%E9%A2%9C%E8%89%B2%E4%B8%8E%E6%84%9F%E7%9F%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 20
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Games101作业笔记
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Games101作业笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BD%9C%E4%B8%9A/%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3%E3%80%90%E5%8D%A1%E9%A1%BF%E3%80%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    基础配置
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BD%9C%E4%B8%9A/%E4%BD%9C%E4%B8%9A3%E7%9B%B8%E5%85%B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Homework3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BD%9C%E4%B8%9A/%E4%BD%9C%E4%B8%9A5%E7%9B%B8%E5%85%B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Homework5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BD%9C%E4%B8%9A/%E4%BD%9C%E4%B8%9A6%E7%9B%B8%E5%85%B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Homework6
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BD%9C%E4%B8%9A/%E4%BD%9C%E4%B8%9A7%E7%9B%B8%E5%85%B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Homework7
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#content" class="md-nav__link">
+    <span class="md-ellipsis">
+      content
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uniform-grids" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uniform grids
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Uniform grids">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-will-work-well" class="md-nav__link">
+    <span class="md-ellipsis">
+      when will work well 效果好的时间？
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spatial-partition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spatial Partition
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spatial Partition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examplekd-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example：KD-Tree
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kd-tree-pre-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      KD-tree Pre-processing 预处理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#traversing-a-kd-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Traversing a KD-Tree：实际进行光线追踪
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#object-partition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Object Partition：物体划分
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Object Partition：物体划分">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bvh-boudning-volume-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      BVH : boudning volume hierarchy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-bvh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building BVH
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bvh-traversal" class="md-nav__link">
+    <span class="md-ellipsis">
+      BVH traversal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      comparison 对比
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-radiometry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic radiometry 辐射度量学
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic radiometry 辐射度量学">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#radiometry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Radiometry 辐射度量学
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#radiant-energy-and-flux-power" class="md-nav__link">
+    <span class="md-ellipsis">
+      Radiant Energy and Flux （power）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#important-light-measurement" class="md-nav__link">
+    <span class="md-ellipsis">
+      important light measurement
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="important light measurement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#radio-intensity" class="md-nav__link">
+    <span class="md-ellipsis">
+      radio intensity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      立体角
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      单位立体角？微分立体角
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Lecture 14</h1>
+
+<h2 id="content">content</h2>
+<p>using AABB to accelerate ray tracing</p>
+<ul>
+<li>
+<p>uniform grids</p>
+</li>
+<li>
+<p>spatial partitions
+basic radiometry</p>
+</li>
+</ul>
+<h2 id="uniform-grids">Uniform grids</h2>
+<p>场景复杂，如何进行求交？上节课说到了使用盒子先做判断。
+步骤：</p>
+<ul>
+<li>
+<p>包围盒</p>
+</li>
+<li>
+<p>预处理（划分为格子）</p>
+</li>
+<li>
+<p>与物体相交的格子判断哪些有物体：</p>
+</li>
+<li>
+<p>进行光线追踪，和格子相交判断。</p>
+</li>
+<li>
+<p>再求【光线】与这个【盒子内的物体】相交。</p>
+</li>
+</ul>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241104215001.png" /></p>
+<p>平衡：格子不能太稀疏，太密集</p>
+<ul>
+<li>
+<p>与光线直接和物体求交换成光线和格子求交。</p>
+</li>
+<li>
+<p>启发式算法求得数量：</p>
+</li>
+</ul>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241104215228.png" /></p>
+<h3 id="when-will-work-well">when will work well 效果好的时间？</h3>
+<p>Teapot in a stadium：存在</p>
+<ul>
+<li>
+<p>大规模密集</p>
+</li>
+<li>
+<p>大规模稀疏
+效果不好。</p>
+</li>
+</ul>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241104215437.png" /></p>
+<h2 id="spatial-partition">Spatial Partition</h2>
+<p>基于上述的不足之处。
+key idea：稀疏的时候用大格子，密集的地方用小格子。</p>
+<h3 id="examplekd-tree">Example：KD-Tree</h3>
+<p>例子：</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241104215650.png" /></p>
+<p>八叉树：</p>
+<ul>
+<li>
+<p>例如停下来的条件：向下切有大部分块都没有东西</p>
+</li>
+<li>
+<p>例如右下角</p>
+</li>
+<li>
+<p>缺点：维数过高的时候计算量很多（8岔+指数级）</p>
+</li>
+</ul>
+<p>KD-tree</p>
+<ul>
+<li>
+<p>每次只沿着某个轴砍一刀</p>
+</li>
+<li>
+<p>水平，竖直，交替划分，能够保证均匀的格子</p>
+</li>
+<li>
+<p>类似二叉树的性质，计算更少</p>
+</li>
+</ul>
+<p>其他：BSP-tree：斜着切，不好计算</p>
+<h3 id="kd-tree-pre-processing">KD-tree Pre-processing 预处理</h3>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241104220236.png" /></p>
+<p>数据结构记录：</p>
+<ul>
+<li>
+<p>内部节点：</p>
+<ul>
+<li>
+<p>切割的轴</p>
+</li>
+<li>
+<p>切割的位置</p>
+</li>
+<li>
+<p>指向孩子的节点指针</p>
+</li>
+</ul>
+</li>
+<li>
+<p>叶子节点：</p>
+<ul>
+<li>实际切割的object</li>
+</ul>
+</li>
+</ul>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241104220421.png" /></p>
+<h3 id="traversing-a-kd-tree">Traversing a KD-Tree：实际进行光线追踪</h3>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241104220851.png" /></p>
+<p>判断：</p>
+<ul>
+<li>
+<p>如果有交点，则判断两个child</p>
+<ul>
+<li>
+<p>child为leaf：计算物体相交</p>
+</li>
+<li>
+<p>child为internal：计算格子，重复上面过程</p>
+</li>
+</ul>
+</li>
+<li>
+<p>如果没有交点，则跳过</p>
+</li>
+</ul>
+<p>KD-tree问题：</p>
+<ul>
+<li>
+<p>给定AABB的包围盒，得知道哪些三角形【也即物体】和框有交集。（即划分框的办法本身比较难）</p>
+</li>
+<li>
+<p>物体本身也会被划分到多个不同的格子，可能不再这个盒子里但是相交。</p>
+</li>
+</ul>
+<h2 id="object-partition">Object Partition：物体划分</h2>
+<h3 id="bvh-boudning-volume-hierarchy">BVH : boudning volume hierarchy</h3>
+<p>避免了</p>
+<ul>
+<li>
+<p>一个几何结构不会出现在多个叶子节点里</p>
+</li>
+<li>
+<p>不需要计算bounding本身和三角形的相交
+问题：</p>
+</li>
+<li>
+<p>划分空间并不严格，会产生相交，只能尽可能让它变少</p>
+</li>
+</ul>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241104221827.png" /></p>
+<h3 id="example">example</h3>
+<p>步骤</p>
+<ul>
+<li>
+<p>找到包围盒</p>
+</li>
+<li>
+<p>递归地进行划分</p>
+</li>
+<li>
+<p>重新计算包围盒</p>
+</li>
+<li>
+<p>直到停下来的条件</p>
+</li>
+</ul>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241104221926.png" /></p>
+<h3 id="building-bvh">Building BVH</h3>
+<p>如何划分？保持均匀？
+solution：沿着更长的轴进行划分
+solution：找到中位数？的三角形【有排序的问题】</p>
+<ul>
+<li>快速选择算法【top问题】</li>
+</ul>
+<p>如何停止？</p>
+<ul>
+<li>设置包含很少的元素的时候进行停止</li>
+</ul>
+<p>数据结构</p>
+<ul>
+<li>
+<p>中间节点：</p>
+<ul>
+<li>
+<p>盒子</p>
+</li>
+<li>
+<p>指针</p>
+</li>
+</ul>
+</li>
+<li>
+<p>叶子节点</p>
+<ul>
+<li>
+<p>盒子</p>
+</li>
+<li>
+<p>指物体</p>
+</li>
+</ul>
+</li>
+<li>
+<p>如果要表示一个子集：只需要找到这个子树</p>
+</li>
+</ul>
+<h3 id="bvh-traversal">BVH traversal</h3>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241104222756.png" /></p>
+<ul>
+<li>
+<p>如果不相交： return</p>
+</li>
+<li>
+<p>如果相交的是一个叶子：计算所有物体相交</p>
+</li>
+<li>
+<p>两个child都进行计算，返回更近的一个hit。</p>
+</li>
+</ul>
+<h3 id="comparison">comparison 对比</h3>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241104223119.png" /></p>
+<h2 id="basic-radiometry">Basic radiometry 辐射度量学</h2>
+<p>问题：</p>
+<ul>
+<li>
+<p>之前在布林冯模型中提到光线强度I，但是并没有完全介绍</p>
+</li>
+<li>
+<p>按照Whitted的加速模型，光线应该是一块区域散射，而不是一条直线</p>
+</li>
+</ul>
+<p>why 需要学习辐射度量学？</p>
+<ul>
+<li>
+<p>更精确的描述光线的方法</p>
+</li>
+<li>
+<p>高级光线追踪建立于此</p>
+</li>
+</ul>
+<h3 id="radiometry">Radiometry 辐射度量学</h3>
+<p>辐射度量学：如何描述光照
+表示的新的属性：</p>
+<ul>
+<li>
+<p>radiant flux:光通量，单位时间内通过的光总量</p>
+</li>
+<li>
+<p>intensity:光强，单位立体角光通量，瓦特</p>
+</li>
+<li>
+<p>irradiance:辉度，单位面积光通量，瓦特/平方米</p>
+</li>
+<li>
+<p>radiance:光亮度</p>
+</li>
+</ul>
+<p>学东西的三把斧：</p>
+<ul>
+<li>
+<p>why：为什么要学</p>
+</li>
+<li>
+<p>what：具体是什么</p>
+</li>
+<li>
+<p>how：怎么做</p>
+</li>
+</ul>
+<h3 id="radiant-energy-and-flux-power">Radiant Energy and Flux （power）</h3>
+<p>energy定义：能量是电磁辐射的能量。使用焦耳作为单位。
+power：单位时间的性质：单位时间的能量（功率）（单位流明</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241106213007.png" /></p>
+<h3 id="important-light-measurement">important light measurement</h3>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241106213240.png" /></p>
+<h4 id="radio-intensity">radio intensity</h4>
+<p>radio intensity：单位能量除以单位立体角。单位为坎德拉</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241106213425.png" /></p>
+<h4 id="_1">立体角</h4>
+<p>从平面出发：弧长除以半径</p>
+<ul>
+<li>
+<p>立体角就是球面上的面积除以半径平方</p>
+</li>
+<li>
+<p>定义了：空间中的角有多大</p>
+</li>
+</ul>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241106213638.png" /></p>
+<h4 id="_2">单位立体角？微分立体角</h4>
+<p>从两个角度：</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241106213852.png" /></p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241106213943.png" /></p>
+<ul>
+<li>对于积分出来是<span class="arithmatex">\(4\pi\)</span></li>
+</ul>
+<p>均匀分布的光源：</p>
+<ul>
+<li>
+<p>以单位角来积分的intensity最后得到的是功率</p>
+</li>
+<li>
+<p>所以功率除4pi为indensity</p>
+</li>
+</ul>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241106214208.png" /></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.indexes"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

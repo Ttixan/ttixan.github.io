@@ -1,0 +1,2007 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ttxian.github.io/Games101/Lecture%20-%203%20Transformation/">
+      
+      
+        <link rel="prev" href="../Lecture%20-%202%20Review%20of%20linear%20algebra/">
+      
+      
+        <link rel="next" href="../Lecture%20-%205%20and%206%20Rasteriazation%20%28Triangles%29/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Lecture 3 & 4 - tt的个人网站</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#application" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="tt的个人网站" class="md-header__button md-logo" aria-label="tt的个人网站" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            tt的个人网站
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lecture 3 & 4
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="tt的个人网站" class="md-nav__button md-logo" aria-label="tt的个人网站" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    tt的个人网站
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Games101学习笔记
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Games101学习笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%201%20Introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%202%20Review%20of%20linear%20algebra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Lecture 3 & 4
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 3 & 4
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2d-transformations" class="md-nav__link">
+    <span class="md-ellipsis">
+      2D Transformations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2D Transformations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rotation-scale-shear" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rotation, scale, shear
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rotation, scale, shear">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shear-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shear Matrix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rotate
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#representing-transformations-using-matrices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Representing transformations using matrices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Representing transformations using matrices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      线性变换概念
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#homogeneous-coordinates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Homogeneous coordinates 齐次坐标
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Homogeneous coordinates 齐次坐标">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#motivation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Motivation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      Properties
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#affine-transformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Affine Transformation 仿射变换
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inverse-transform" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inverse Transform 逆变换
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#composite-transformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Composite Transformation 变换的组合
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decomposing-complex-transform" class="md-nav__link">
+    <span class="md-ellipsis">
+      Decomposing Complex Transform 变换的分解
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3d-transform" class="md-nav__link">
+    <span class="md-ellipsis">
+      3D Transform
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3D Transform">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      旋转
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="旋转">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      分解复杂角度
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      绕某轴旋转的向量
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viewing-transformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Viewing transformation（观测）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Viewing transformation（观测）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      流程
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      定义相机
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      关键观察
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to" class="md-nav__link">
+    <span class="md-ellipsis">
+      变换过程 how to
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#projection-transformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Projection transformation（投影）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Projection transformation（投影）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#orthographic-projection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Orthographic projection（正交）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#perspective-projection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Perspective projection（透视）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#perspective-projection_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Perspective projection
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      附录：代码作业
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%205%20and%206%20Rasteriazation%20%28Triangles%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 5 & 6
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%207%20shading/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 7
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%208%20shading%20%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 8
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%209%20Texture%20Mapping%20%E7%BA%B9%E7%90%86%E6%98%A0%E5%B0%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 9
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2010%20Geometry%20%E5%87%A0%E4%BD%95%20Introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 10
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2011%20Geometry%20%E6%9B%B2%E7%BA%BF%E5%92%8C%E5%B9%B3%E9%9D%A2%20Curves%20and%20Surface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 11
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2012%20Geometry3%20%E6%9B%B2%E9%9D%A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 12
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2013%20Ray%20tracing%20%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA%20%E6%8A%80%E6%9C%AF%E9%9A%BE%E9%A2%98/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 13
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2014%20Ray%20tracing%20%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA%20%E5%8A%A0%E9%80%9F%E7%BB%93%E6%9E%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 14
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2015%20Ray%20tracing%20%E8%BE%90%E5%B0%84%E5%BA%A6%E9%87%8F%E5%AD%A6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 15
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2016%20Ray%20tracing%20%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E7%A7%AF%E5%88%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 16
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2017%20Materials%20and%20Appearance%20%E6%9D%90%E8%B4%A8%E5%92%8C%E5%A4%96%E8%A7%82/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 17
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2018%20%E7%8E%B0%E6%9C%89%E6%9D%90%E8%B4%A8%E7%A0%94%E7%A9%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 18
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2019%20%E7%9B%B8%E6%9C%BA%E3%80%81%E9%95%9C%E5%A4%B4%E5%92%8C%E5%85%89%E5%9C%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 19
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%20-%2020%20Color%20and%20Perception%20%E9%A2%9C%E8%89%B2%E4%B8%8E%E6%84%9F%E7%9F%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 20
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Games101作业笔记
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Games101作业笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BD%9C%E4%B8%9A/%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3%E3%80%90%E5%8D%A1%E9%A1%BF%E3%80%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    基础配置
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BD%9C%E4%B8%9A/%E4%BD%9C%E4%B8%9A3%E7%9B%B8%E5%85%B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Homework3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BD%9C%E4%B8%9A/%E4%BD%9C%E4%B8%9A5%E7%9B%B8%E5%85%B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Homework5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BD%9C%E4%B8%9A/%E4%BD%9C%E4%B8%9A6%E7%9B%B8%E5%85%B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Homework6
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BD%9C%E4%B8%9A/%E4%BD%9C%E4%B8%9A7%E7%9B%B8%E5%85%B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Homework7
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2d-transformations" class="md-nav__link">
+    <span class="md-ellipsis">
+      2D Transformations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2D Transformations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rotation-scale-shear" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rotation, scale, shear
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rotation, scale, shear">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shear-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shear Matrix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rotate
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#representing-transformations-using-matrices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Representing transformations using matrices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Representing transformations using matrices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      线性变换概念
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#homogeneous-coordinates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Homogeneous coordinates 齐次坐标
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Homogeneous coordinates 齐次坐标">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#motivation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Motivation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      Properties
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#affine-transformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Affine Transformation 仿射变换
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inverse-transform" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inverse Transform 逆变换
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#composite-transformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Composite Transformation 变换的组合
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decomposing-complex-transform" class="md-nav__link">
+    <span class="md-ellipsis">
+      Decomposing Complex Transform 变换的分解
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3d-transform" class="md-nav__link">
+    <span class="md-ellipsis">
+      3D Transform
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3D Transform">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      旋转
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="旋转">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      分解复杂角度
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      绕某轴旋转的向量
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viewing-transformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Viewing transformation（观测）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Viewing transformation（观测）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      流程
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      定义相机
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      关键观察
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to" class="md-nav__link">
+    <span class="md-ellipsis">
+      变换过程 how to
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#projection-transformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Projection transformation（投影）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Projection transformation（投影）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#orthographic-projection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Orthographic projection（正交）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#perspective-projection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Perspective projection（透视）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#perspective-projection_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Perspective projection
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      附录：代码作业
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Lecture 3 & 4</h1>
+
+<h2 id="application">Application</h2>
+<ul>
+<li>
+<p>camera 变化</p>
+</li>
+<li>
+<p>ik</p>
+</li>
+</ul>
+<h2 id="why">Why</h2>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240916144521.png" /></p>
+<p>从三维世界到二维的逻辑</p>
+<h2 id="2d-transformations">2D Transformations</h2>
+<h3 id="rotation-scale-shear">Rotation, scale, shear</h3>
+<p>思路，找前后对应关系。</p>
+<h4 id="shear-matrix">Shear Matrix</h4>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240916145907.png" /></p>
+<p>向右移动，x=ay（k=1/a)。所以应该是原本的x（1）+y（a）</p>
+<h4 id="rotate">Rotate</h4>
+<p>默认从原点开始，从逆时针开始旋转。</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240916150643.png" /></p>
+<p>推导过程：列出两个方程，分别为（1，0）和（0，1）的坐标前后变换的等式。</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240916150627.png" /></p>
+<h3 id="representing-transformations-using-matrices">Representing transformations using matrices</h3>
+<h4 id="_1">线性变换概念</h4>
+<p>可以用矩阵相乘表示，线性变换</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240916150801.png" /></p>
+<h2 id="homogeneous-coordinates">Homogeneous coordinates 齐次坐标</h2>
+<h3 id="motivation">Motivation</h3>
+<p>Motivation：不希望把平移变换独立出来，希望也用一种简单整合的方式表示。</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240916151259.png" /></p>
+<h3 id="solution">Solution</h3>
+<p>Solution，把维度拓展为3个，加法可以加入。</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240916151518.png" /></p>
+<p>向量具有平移不变性：所以vector后面是0。</p>
+<h3 id="properties">Properties</h3>
+<p>性质：加减性质是否保留</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240916152021.png" /></p>
+<ul>
+<li>点+点=中点（齐次坐标系下）</li>
+</ul>
+<h3 id="affine-transformation">Affine Transformation 仿射变换</h3>
+<p>结构：</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240916152245.png" /></p>
+<ul>
+<li>
+<p>左上角是原本的变换矩阵</p>
+</li>
+<li>
+<p>右边两个是移动</p>
+</li>
+<li>
+<p>最下面是001 （只有在仿射变换的时候是001）
+其他例子</p>
+</li>
+</ul>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240916152330.png" /></p>
+<h3 id="inverse-transform">Inverse Transform 逆变换</h3>
+<p>结果是乘逆矩阵</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240916152544.png" /></p>
+<h3 id="composite-transformation">Composite Transformation 变换的组合</h3>
+<p>Solution：多个简单变换的组合
+Insight：矩阵乘法的顺序会影响结果 （因为不满足交换律）</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240916152828.png" /></p>
+<p>概念的推广：多个矩阵相乘</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240916153104.png" /></p>
+<h3 id="decomposing-complex-transform">Decomposing Complex Transform 变换的分解</h3>
+<p>沿着某个点旋转的方法：移动回原点-旋转-移动回去</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240916153641.png" /></p>
+<h2 id="3d-transform">3D Transform</h2>
+<p>结果是扩展了一个维度，保留之前2维的性质</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240916154036.png" /></p>
+<p>顺序：先线性变换再平移。
+以下为Lecture 4
+  ### 缩放 平移</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240916194407.png" /></p>
+<h3 id="_2">旋转</h3>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240916194432.png" /></p>
+<p>为什么ｙ的角度不对？因为按照右手螺旋定则，应该是ＺｘＸ而不是ＸｘＺ得到Ｙ，所以是反向旋转。</p>
+<h4 id="_3">分解复杂角度</h4>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240916195357.png" /></p>
+<h4 id="_4">绕某轴旋转的向量</h4>
+<p>罗德里格斯</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240916195635.png" /></p>
+<p>在原点的旋转（默认）
+不再原点的轴的旋转：和上节课一样，先移到原点再旋转，之后再复位。</p>
+<h2 id="viewing-transformation">Viewing transformation（观测）</h2>
+<h3 id="_5">流程</h3>
+<p>类比于正在拍照片</p>
+<ul>
+<li>
+<p>寻找一个地方和人（model transformation）</p>
+</li>
+<li>
+<p>找到合适的摄像机角度（view transformation）</p>
+</li>
+<li>
+<p>照相（projection transformation）</p>
+</li>
+</ul>
+<h4 id="_6">定义相机</h4>
+<ul>
+<li>
+<p>位置</p>
+</li>
+<li>
+<p>视角方向</p>
+</li>
+<li>
+<p>向上方向（类似于画幅旋转），相机绕着视角方向的轴旋转。
+一般来说我们希望相机始终位于原点，而且相机是正摆放的(Y轴正方向)，拍摄方向是朝着正前方拍的(Z轴负方向)</p>
+</li>
+</ul>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240916201245.png" /></p>
+<h4 id="_7">关键观察</h4>
+<p>目的：完成初始化</p>
+<ul>
+<li>
+<p>没有相对运动，拍出来的东西不变。</p>
+</li>
+<li>
+<p>先把相机移动到0，0，0。向着-z方向看。</p>
+</li>
+<li>
+<p>和相机一起移动物体</p>
+</li>
+</ul>
+<h4 id="how-to">变换过程 how to</h4>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240918213144.png" /></p>
+<ul>
+<li>
+<p>平移矩阵【移到原点】</p>
+</li>
+<li>
+<p>过渡矩阵</p>
+<ul>
+<li>
+<p>过渡矩阵本身不好求，所以求逆</p>
+</li>
+<li>
+<p>逆矩阵求出来之后，由于这个过渡矩阵是正交的，所以直接求转置则为逆。</p>
+<ul>
+<li>
+<p><strong>正交矩阵</strong>：一个矩阵 <span class="arithmatex">\(Q\)</span> 被称为正交矩阵，如果满足 <span class="arithmatex">\(Q^TQ=I\)</span>，其中 <span class="arithmatex">\(Q^T\)</span> 是 <span class="arithmatex">\(Q\)</span> 的转置，<span class="arithmatex">\(I\)</span> 是单位矩阵。</p>
+</li>
+<li>
+<p>旋转矩阵是正交的，而且多个旋转矩阵相乘也保持一样的性质。齐次坐标系下也一样。</p>
+</li>
+<li>
+<p>根据定义，逆矩阵意思是<span class="arithmatex">\(AA^{-1}=I\)</span>，所以正交矩阵的逆矩阵 就是其转置。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240918213737.png" /></p>
+<h2 id="projection-transformation">Projection transformation（投影）</h2>
+<ul>
+<li>
+<p>将3d转化到2d上</p>
+</li>
+<li>
+<p>两种，正交和透视</p>
+</li>
+<li>
+<p>以是否有近大远小的区分。</p>
+</li>
+</ul>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240918215342.png" /></p>
+<h4 id="orthographic-projection">Orthographic projection（正交）</h4>
+<ul>
+<li>
+<p>将相机放在某位</p>
+</li>
+<li>
+<p>将z轴直接丢掉</p>
+</li>
+<li>
+<p>得到x，y，做一个【-1，1】之间的缩放</p>
+</li>
+</ul>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240918215550.png" /></p>
+<ul>
+<li>
+<p>更正规的做法：先平移，再缩放。</p>
+</li>
+<li>
+<p>【l,r】【b，t】【f，n】左右，前后，上下。far near（z）注意值，远近是由于-z，远的地方其实值更小。（右手系）</p>
+</li>
+</ul>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240918215750.png" /></p>
+<ul>
+<li>数学公式。</li>
+</ul>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240918220035.png" /></p>
+<h4 id="perspective-projection">Perspective projection（透视）</h4>
+<p>透视投影矩阵=正交投影矩阵x透视变正交矩阵
+所以需要先求出透视变正交矩阵，再做一次正交投影的变化。</p>
+<ul>
+<li>等比放大</li>
+</ul>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240918220928.png" /></p>
+<ul>
+<li>
+<p>流程：把平面挤一挤，再变成正交投影。</p>
+<ul>
+<li>
+<p>远近平面上各自的z不会变化？</p>
+</li>
+<li>
+<p>中心点不变</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240918221216.png" /></p>
+<ul>
+<li>
+<p>挤压的具体操作：基于相似三角形</p>
+<ul>
+<li>由距离推算出。通过【相似三角形】得到xy坐标的关系</li>
+</ul>
+</li>
+</ul>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240918221552.png" /></p>
+<ul>
+<li>由于之前提到的乘k之后点的性质依然不变，所以暂且把得到的点乘z。</li>
+</ul>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240919214200.png" /></p>
+<ul>
+<li>
+<p>之后已经可以得到【除了第三行的】转换矩阵内容。</p>
+</li>
+<li>
+<p>前两行的内容。</p>
+</li>
+</ul>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240919213658.png" /></p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240919213536.png" /></p>
+<ul>
+<li>
+<p>需要根据【之前规定的】两个点得到两个不等式。从而推算出第三行的内容。</p>
+<ul>
+<li>
+<p>近平面上：所有点不会发生变化。近平面上z为n，所以坐标是（x，y，n，1）</p>
+<ul>
+<li>
+<p>但是表示方法在齐次坐标系下可以根据矩阵乘变成n乘。这样会更方便之前的unknown形式直接求解。</p>
+</li>
+<li>
+<p>由于<span class="arithmatex">\(n^2\)</span>与xy无关，所以第三行前两列为0，0。后面的数暂且列为等式。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>远平面上：z不会发生变化。</p>
+<ul>
+<li>
+<p>取中心点的特殊性质：中心点挤压之后不发生位置偏移。</p>
+</li>
+<li>
+<p>00f1转换之后依然是00f1，根据上面的f乘得到<span class="arithmatex">\(f^2\)</span>和<span class="arithmatex">\(f\)</span> 。（方便替换z直接做等）</p>
+</li>
+<li>
+<p>得到不等式。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240919213332.png" /></p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240919214908.png" /></p>
+<ul>
+<li>最后求解出A，B的值。</li>
+</ul>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20240919213040.png" /></p>
+<p><a href="https://www.zhyingkun.com/perspective/perspective/#:~:text=%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E9%80%8F%E8%A7%86%E7%9F%A9%E9%98%B5%C2%B6.">深入理解透视矩阵 - zhyingkun</a></p>
+<p>得到了透视变正交矩阵和正交矩阵，最后相乘得到：</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241007213126.png" /></p>
+<p>粘贴自lecture5（上节课没讲完的）</p>
+<h2 id="perspective-projection_1">Perspective projection</h2>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241007211839.png" /></p>
+<p>定义视锥的两个概念：</p>
+<ol>
+<li>
+<p>垂直可视角度（类似于广角？之类的镜头概念）</p>
+</li>
+<li>
+<p>视角比例？</p>
+</li>
+</ol>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241006193923.png" /></p>
+<p>如何和之前的投影之间转化？</p>
+<ul>
+<li>
+<p>利用tan</p>
+</li>
+<li>
+<p>利用aspect</p>
+</li>
+</ul>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241006194324.png" /></p>
+<h2 id="_8">附录：代码作业</h2>
+<p>最后的答案为：</p>
+<pre><code class="language-C++">#include &lt;Eigen/Dense&gt;
+#include &lt;cmath&gt;
+
+Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio, float zNear, float zFar) {
+    // 将视场角从度转换为弧度
+    float fov_rad = eye_fov * M_PI / 180.0f;
+
+    // 计算投影矩阵的参数
+    float tan_half_fov = std::tan(fov_rad / 2.0f);
+    float range_inv = 1.0f / (zNear - zFar);
+
+    // 创建投影矩阵
+    Eigen::Matrix4f projection = Eigen::Matrix4f::Zero();
+    projection(0, 0) = 1.0f / (aspect_ratio * tan_half_fov); // x轴缩放
+    projection(1, 1) = 1.0f / tan_half_fov;                  // y轴缩放
+    projection(2, 2) = (zNear + zFar) * range_inv;           // z轴缩放
+    projection(2, 3) = 2.0f * zNear * zFar * range_inv;     // z轴偏移
+    projection(3, 2) = -1.0f;                                 // 透视效果
+    projection(3, 3) = 0.0f;                                  // 齐次坐标
+
+    return projection;
+}
+</code></pre>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241007213656.png" /></p>
+<blockquote>
+<p>大部分资料跟书上推导出来的透视投影矩阵一般是由fov,aspect,far,near四个参数数定义的，我们现在来看下我们前面求的透视投影矩阵转化成由上面四个参数定义的形式。</p>
+</blockquote>
+<p>推导过程：</p>
+<p><img alt="image.png" src="https://picbed-1305808788.cos.ap-chengdu.myqcloud.com/img/20241007213722.png" /></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.indexes"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
