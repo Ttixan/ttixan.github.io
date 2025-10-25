@@ -9,7 +9,7 @@ nav:
   - Games101学习笔记:
     - Lecture 1: 'Games101/Lecture - 1 Introduction.md'
     - Lecture 2: 'Games101/Lecture - 2 Review of linear algebra.md'
-    - Lecture 3 & 4: 'Games101/Lecture - 3 and 4 Transformation.md'
+    - Lecture 3 & 4: 'Games101/Lecture - 3 Transformation.md'
     - Lecture 5 & 6: 'Games101/Lecture - 5 and 6 Rasteriazation (Triangles).md'
     - Lecture 7: 'Games101/Lecture - 7 shading.md'
     - Lecture 8: 'Games101/Lecture - 8 shading 渲染管线.md'
